@@ -1,3 +1,4 @@
+import 'package:driver_app/Splashscreen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -6,11 +7,7 @@ void main() async {
       child: MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Driver's App",
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text("Welcome to Drivers App"),
-      ),
-    ),
+    home: SplashScreen(),
   )));
 }
 
