@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:driver_app/Utils/colors.dart';
+import 'package:driver_app/Utils/sizedBox.dart';
 import 'package:driver_app/mainScreens/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   startTimer() {
-    Timer(Duration(seconds: 3), () async {
+    Timer(Duration(seconds: 6), () async {
       //home page
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MainScreen()));
@@ -28,16 +29,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: bColor,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/img1.png"),
-          Text("Uber Clone App",style: TextStyle(fontSize: 20,color: wColor,
-          fontWeight: FontWeight.bold),)
-
-      ]),
+    return Material(
+      child: Container(
+        color: bColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/img1.png"),
+            height20,
+            Text("Uber Clone App",style: TextStyle(fontSize: 20,color: wColor,
+            fontWeight: FontWeight.bold,
+            decoration: TextDecoration.none),
+          )
+    
+        ]),
+      ),
     );
   }
 }
