@@ -1,3 +1,8 @@
+import 'package:driver_app/Tab%20Pages/earning_page.dart';
+import 'package:driver_app/Tab%20Pages/home_page.dart';
+import 'package:driver_app/Tab%20Pages/profile_page.dart';
+import 'package:driver_app/Tab%20Pages/rateing_page.dart';
+import 'package:driver_app/Utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -30,7 +35,34 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       body: TabBarView(
         controller: tabController,
         physics: NeverScrollableScrollPhysics(),
-        children: [],
+        children: [
+          HomeTabPage(),
+          EarningsTabPage(),
+          RatingTabPage(),
+          ProfileTabPage(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const[
+        BottomNavigationBarItem(icon: Icon(Icons.home),
+        label: "Home"),
+         BottomNavigationBarItem(icon: Icon(Icons.credit_card),
+        label: "Earnings"),
+         BottomNavigationBarItem(icon: Icon(Icons.star),
+        label: "Ratings"),
+         BottomNavigationBarItem(icon: Icon(Icons.person),
+        label: "Profile"),
+      ],
+      unselectedItemColor: gColor.withOpacity(0.5),
+      selectedItemColor: wColor,
+      backgroundColor: bColor,
+      type: BottomNavigationBarType.fixed,
+      selectedLabelStyle: TextStyle(
+        fontSize: 14
+      ),
+      showUnselectedLabels: true,
+      currentIndex: selectedIndex,
+      onTap: onItemClicked,
       ),
     );
   }
