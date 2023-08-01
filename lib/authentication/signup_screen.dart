@@ -1,6 +1,7 @@
 import 'package:driver_app/Utils/colors.dart';
 import 'package:driver_app/Utils/sizedBox.dart';
 import 'package:driver_app/authentication/car_Info_screen.dart';
+import 'package:driver_app/authentication/login_screen.dart';
 import 'package:driver_app/widgest/textField.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       borderRadius: BorderRadius.circular(6),
                     )),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CarInfoScreen(),),);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CarInfoScreen(),
+                    ),
+                  );
                 },
                 child: Padding(
                   padding:
@@ -89,6 +95,15 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
+              height20,
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                  },
+                  child: Text("Already have an Account? Login Here",
+                  style: TextStyle(
+                    color: gColor
+                  ),))
             ],
           ),
         ),
