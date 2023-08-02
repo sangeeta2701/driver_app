@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "139618439624",
+    "project_id": "uber-driver-clone-5b279",
+    "storage_bucket": "uber-driver-clone-5b279.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139618439624:android:cdf5f8dbecafb5e9dd70fd",
+        "android_client_info": {
+          "package_name": "com.example.driver_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139618439624-6f4lhj4gd1vqif0la6ic5jvemak4e0bd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6o6yiLMqK7nn-pSOALYY5iQzUwhBSI7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139618439624-6f4lhj4gd1vqif0la6ic5jvemak4e0bd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
