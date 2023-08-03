@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:driver_app/Utils/colors.dart';
 import 'package:driver_app/Utils/sizedBox.dart';
-import 'package:driver_app/authentication/login_screen.dart';
+import 'package:driver_app/authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 6), () async {
       //home page
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          context, MaterialPageRoute(builder: (context) => SignupScreen()));
     });
   }
 

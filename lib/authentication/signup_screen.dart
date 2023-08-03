@@ -4,6 +4,7 @@ import 'package:driver_app/authentication/car_Info_screen.dart';
 import 'package:driver_app/authentication/login_screen.dart';
 import 'package:driver_app/widgest/textField.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -12,11 +13,25 @@ class SignupScreen extends StatefulWidget {
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
+
+
 class _SignupScreenState extends State<SignupScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  validateForm() {
+    if (nameController.text.length < 3) {
+      Fluttertoast.showToast(msg: "Name must be atleast 3 characters");
+    }else if(!emailController.text.contains("@")){
+      Fluttertoast.showToast(msg: "Invalid email address");
+    }else if(phoneController.text.isEmpty){
+      Fluttertoast.showToast(msg: "Phone number is required");
+    }else if(passwordController.text.length<6){
+      Fluttertoast.showToast(msg: "Password must be atleast 6 characters");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +91,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       borderRadius: BorderRadius.circular(6),
                     )),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CarInfoScreen(),
-                    ),
-                  );
+                  validateForm();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => CarInfoScreen(),
+                  //   ),
+                  // );
                 },
                 child: Padding(
                   padding:
@@ -98,12 +114,13 @@ class _SignupScreenState extends State<SignupScreen> {
               height20,
               TextButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
-                  child: Text("Already have an Account? Login Here",
-                  style: TextStyle(
-                    color: gColor
-                  ),))
+                  child: Text(
+                    "Already have an Account? Login Here",
+                    style: TextStyle(color: gColor),
+                  ))
             ],
           ),
         ),
