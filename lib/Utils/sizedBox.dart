@@ -47,3 +47,9 @@ const SizedBox width12 = SizedBox(
 const SizedBox width16 = SizedBox(
   width: 16,
 );
+const SizedBox width20 = SizedBox(
+  width: 20,
+);
+const SizedBox width24 = SizedBox(
+  width: 24,
+);
