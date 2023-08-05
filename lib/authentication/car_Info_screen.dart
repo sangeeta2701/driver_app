@@ -20,6 +20,7 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
 
   String? selectedCarType;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
