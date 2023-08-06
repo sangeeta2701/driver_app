@@ -1,5 +1,9 @@
+import 'package:driver_app/Splashscreen/splash_screen.dart';
 import 'package:driver_app/Utils/colors.dart';
+import 'package:driver_app/global/global.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../Utils/sizedBox.dart';
 import '../widgest/textField.dart';
@@ -19,7 +23,24 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
   List<String> carTypeList = ["Uber-X", "Uber-Go", "Bike"];
 
   String? selectedCarType;
+  saveCarInfo() {
+    Map driverCarInfosMap = {
+      "car_color": carColorController.text.trim(),
+      "car_number": carNumberController.text.trim(),
+      "car_model": carNameController.text.trim(),
+      "type": selectedCarType,
+    };
 
+    DatabaseReference dericersRef =
+        FirebaseDatabase.instance.ref().child("drivers");
+    dericersRef
+        .child(currentFirebaseUser!.uid)
+        .child("car_details")
+        .set(driverCarInfosMap);
+
+    Fluttertoast.showToast(msg: "Car details has been saved.Congratulations!!");
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>SplashScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,22 +86,28 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
               ),
               height20,
               DropdownButton(
-                iconSize: 20,
-                dropdownColor: bColor.withOpacity(0.3),
+                  iconSize: 20,
+                  dropdownColor: bColor.withOpacity(0.3),
                   hint: Text(
                     "Please choose car type",
                     style: TextStyle(color: gColor, fontSize: 14),
                   ),
                   value: selectedCarType,
                   items: carTypeList.map((car) {
-                    return DropdownMenuItem(value: car,child: Text(car,style: TextStyle(color: gColor),),);
+                    return DropdownMenuItem(
+                      value: car,
+                      child: Text(
+                        car,
+                        style: TextStyle(color: gColor),
+                      ),
+                    );
                   }).toList(),
                   onChanged: (newValue) {
                     setState(() {
                       selectedCarType = newValue.toString();
                     });
                   }),
-             height60,
+              height60,
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: wColor,
@@ -88,6 +115,12 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                       borderRadius: BorderRadius.circular(6),
                     )),
                 onPressed: () {
+                  if (carColorController.text.isNotEmpty &&
+                      carNumberController.text.isNotEmpty &&
+                      carNameController.text.isNotEmpty &&
+                      selectedCarType != null) {
+                    saveCarInfo();
+                  }
                   // Navigator.push(context, MaterialPageRoute(builder: (context)=>CarInfoScreen(),),);
                 },
                 child: Padding(
@@ -102,8 +135,6 @@ class _CarInfoScreenState extends State<CarInfoScreen> {
                   ),
                 ),
               ),
-            
-            
             ]),
           ),
         ),
