@@ -1,6 +1,6 @@
-import 'package:driver_app/Splashscreen/splash_screen.dart';
 import 'package:driver_app/Utils/colors.dart';
 import 'package:driver_app/authentication/signup_screen.dart';
+import 'package:driver_app/mainScreens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,16 +21,17 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-   validateForm() {
-     if (!emailController.text.contains("@")) {
+  validateForm() {
+    if (!emailController.text.contains("@")) {
       Fluttertoast.showToast(msg: "Invalid email address");
-    }  else if (passwordController.text.isNotEmpty) {
+    } else if (passwordController.text.isEmpty) {
       Fluttertoast.showToast(msg: "Password is required");
     } else {
       loginDriver();
     }
   }
-loginDriver() async {
+
+  loginDriver() async {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -52,13 +53,15 @@ loginDriver() async {
       currentFirebaseUser = firebseUser;
       Fluttertoast.showToast(msg: "Login Successful!!");
       // ignore: use_build_context_synchronously
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>SplashScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainScreen()));
     } else {
       // ignore: use_build_context_synchronously
       Navigator.pop(context);
       Fluttertoast.showToast(msg: "Error occured during Login!!");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +106,7 @@ loginDriver() async {
                         borderRadius: BorderRadius.circular(6),
                       )),
                   onPressed: () {
+                    validateForm();
                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>CarInfoScreen(),),);
                   },
                   child: Padding(
@@ -120,11 +124,15 @@ loginDriver() async {
                 height20,
                 TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupScreen()));
                     },
-                    child: Text("Don't have an Account? Register Here",style: TextStyle(
-                      color: gColor
-                    ),))
+                    child: Text(
+                      "Don't have an Account? Register Here",
+                      style: TextStyle(color: gColor),
+                    ))
               ],
             ),
           ),
